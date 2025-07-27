@@ -12,8 +12,16 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
     <script>
+        // at the EOD "heading" is an react object
+        // h1 is the tag which needs to be created
+        // the "{}" is used to pass attributes 
+        // "Hello from React!" is the innerHTML for the h1
         const heading = React.createElement("h1", {}, "Hello from React!");
+        
+        // creating a root in the react i think it's like a copy of the container
         const root = ReactDOM.createRoot(document.getElementById("root"));
+
+        // rendering the heading into the root means injecting the heading object by converting into a tag into the root container
         root.render(heading);
     </script>
 </body>
