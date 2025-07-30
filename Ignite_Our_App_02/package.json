@@ -1,0 +1,28 @@
+{
+  "name": "ignite_our_app_02",
+  "version": "1.0.0",
+  "description": "igniting our app",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeWithYT/NamasteReact.git"
+  },
+  "keywords": [],
+  "author": "Y.T",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeWithYT/NamasteReact/issues"
+  },
+  "homepage": "https://github.com/CodeWithYT/NamasteReact#readme",
+  "dependencies": {
+    "parcel": "^2.15.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "browserslist": [
+    "last 2 chrome versions",
+    "last 2 firefox versions"
+  ]
+}
