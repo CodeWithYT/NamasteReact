@@ -1,0 +1,25 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "creating a script, learning JSX and components",
+  "scripts": {
+    "test": "jest",
+    "tarun": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeWithYT/NamasteReact.git"
+  },
+  "author": "Y.T",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeWithYT/NamasteReact/issues"
+  },
+  "homepage": "https://github.com/CodeWithYT/NamasteReact#readme",
+  "dependencies": {
+    "parcel": "^2.15.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
