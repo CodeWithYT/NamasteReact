@@ -1,0 +1,280 @@
+@import url('./src/utils/fonts.css');
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid #f6217b; */
+    /* background-color: #FADADD; */
+    /* background-color: #f5f5f5; */
+    background-color: #ffff;
+    padding: 10px;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+.left-container {
+    margin-left: 40px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.left-container img {
+    height: 50px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.right-container {
+    display: flex;
+    gap: 30px;
+    margin-right: 20px;
+    align-items: center;
+}
+.right-container img {
+    height: 30px;
+    width: auto;
+    /* filter: brightness(0) saturate(100%) invert(24%) sepia(94%) saturate(749%) hue-rotate(298deg) brightness(97%) contrast(101%); */
+    /* filter: invert(52%) sepia(100%) saturate(7480%) hue-rotate(358deg) brightness(104%) contrast(106%); */
+
+
+}
+.right-container input{
+    border-radius: 10px;
+    /* border: 1px solid #f6217b; */
+    border: 1px solid #918e8e;
+    height: 26px;
+    width: 300px;
+    outline: none;
+    padding: 8px 8px 8px 16px;
+    background-color: #f5f5f5;
+    font-family: 'Gilroy-medium', sans-serif;
+    font-size: 18px;
+    color: rgba(2, 6, 12, 0.45);
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.right-container .search-btn {
+    margin-left: -30px;
+}
+.right-container input:hover {
+    cursor: pointer;
+}
+.profile-container {
+    height: 30px;
+    width: 30px;
+    /* background-color: #f6217b; */
+    background-color: #212121;
+    border-radius: 50%;
+}
+.body{
+    /* background-color: #f5f5f5; */
+}
+.hero-image-container {
+    height: 60vh;
+    /* background-color: #212121; */
+    /* background-image: linear-gradient(135deg, #f6217b, #212121); */
+    background-color: #fe5105;
+    border-radius: 1rem;
+    margin: 30px 10px 10px 10px;
+    box-shadow: 1px 12px 8px rgba(0, 0, 0, 0.1);
+}
+/* Left cutout */
+.hero-image-container::before,
+.hero-image-container::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: white; /* match page background */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Left side */
+.hero-image-container::before {
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+}
+
+/* Right side */
+.hero-image-container::after {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.title {
+    margin: 5rem auto 2rem 5rem;
+    /* text-align: center; */
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 26px;
+    letter-spacing: -0.6px;
+    /* color: rgb(138, 43, 226); */
+    color: #212121;
+            margin-left: calc(7% + 52px);
+        margin-right: calc(7% + 52px);
+}
+.shimmer-title {
+    margin: 5rem auto 2rem 5rem;
+    height: 26px;
+    background-color: #e0e0e0;
+    margin-left: calc(7% + 52px);
+    margin-right: calc(7% + 52px);
+}
+
+.card-container {
+    /* background-color: #555; */
+    /* margin: 2rem 3rem 5rem 5rem; */
+        margin-left: calc(7% + 52px);
+        margin-right: calc(7% + 52px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(277px, 1fr));
+    /* flex-wrap: wrap; */
+    /* justify-content: flex-start; */
+    /* gap: 3rem; */
+    margin-top: 2rem;
+}
+.card {
+    margin-bottom: 3rem;
+    width: 277px;
+    height: fit-content;
+    padding: 5px;
+    border: 1px solid #e9e6e3;
+    box-sizing: border-box;
+}
+.shimmer-card {
+    margin-bottom: 3rem;
+    width: 277px;
+    height: 294px;
+    background-color: #e0e0e0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card:hover {
+    transform: scale(1.05) ;
+    border: 1px solid #f6217b;
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.product-image{
+    width: 263px;
+    height: 175px;
+    background-color: #212121;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: .8em;
+}
+.card .product-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card .product-details {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: 'Gilroy', sans-serif;
+}
+.card .product-details .price .discounted-price{
+    /* font-weight: 800; */
+    /* font-size: 18px; */
+}
+.card .product-details .price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.product-details *:not(.price):not(.price *) {
+    font-size: 1rem; 
+}
+
+.card .product-details .name, .description{
+    white-space: nowrap;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(1 5 9 / 60%);
+}
+.card .product-details .name {
+    font-weight: 600;
+    color: #212121;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.45px;
+    color: rgba(2, 6, 12, 0.92);
+}
+.card .product-details .rating{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card .product-details .rating-info{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.card .product-details .locality{
+    color: rgb(1 5 9 / 60%);
+}
+.card .product-details .price{
+    display: flex;
+    gap: 10px;
+}
+.card .product-details .price .original-price{
+    text-decoration: line-through;
+    color: #918e8e;
+}
+.filters {
+    margin: 0 20px 0 5rem;
+    display: flex;
+    gap: 15px;
+    margin-left: calc(7% + 52px);
+    margin-right: calc(7% + 52px);
+}
+.filter {
+    background-color: transparent;
+    padding: 8px 12px;
+    border-radius: 18px;
+    height: fit-content;
+    border:1px solid #02060C26;
+    box-shadow: rgba(2, 6, 12, 0.04) 0px 2px 12px;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.35px;
+    
+}
+.shimmer-btn {
+    background-color: #e0e0e0;
+    padding: 8px 12px;
+    border-radius: 18px;
+   border:1px solid transparent;
+}
+.filter:hover {
+    background-color: #fe5105;
+    color: #f5f5f5;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+.filter.active {
+    background-color: #fe5105;
+    color: #f5f5f5;
+}
