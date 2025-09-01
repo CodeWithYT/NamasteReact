@@ -1,0 +1,22 @@
+{
+  "name": "talk_is_cheap_show_your_code",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeWithYT"
+  },
+  "author": "Y.T",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "parcel": "^2.15.4",
+    "reaact-dom": "^1.0.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^6.23.0"
+  }
+}
