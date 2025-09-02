@@ -3,7 +3,9 @@ import Header from "./Header";
 import Body from "./Body";
 import { useState,useEffect } from "react";
 import { data } from "../utils/data";
+import AppContext from "../utils/AppContext";
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
+import RestaurantMenu from "./RestaurantMenu";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -26,15 +28,12 @@ const AppLayout = () => {
           console.log(restraunts);
       }
       return (
-        <div id="app">
-          <Header 
-              api = {api} 
-              originalData = {originalData} 
-              freshList = {freshList}
-              setFreshList = {setFreshList}
-          />
-          <Outlet />
-        </div>
+        <AppContext.Provider value={{ api, originalData, freshList, setFreshList }}>
+          <div id="app">
+            <Header />
+            <Outlet />
+          </div>
+        </AppContext.Provider>
       )
 }
 
@@ -45,16 +44,15 @@ const router = createBrowserRouter([
     children: [
         {
           path: "/",
-          element: (<Body 
-                      api = {api} 
-                      originalData = {originalData} 
-                      freshList = {freshList}
-                      setFreshList = {setFreshList}
-                    />
+          element: (<Body />
       )},
         {
           path: "/about",
           element: <h1>About Us</h1>
+        },
+        {
+          path: "/restaurant/:resId",
+          element: <RestaurantMenu />
         }
       ],  
     errorElement: <h1>404 Not Found</h1>

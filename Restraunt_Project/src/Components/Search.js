@@ -1,7 +1,8 @@
-import { data } from "../utils/data"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import AppContext from "../utils/AppContext";
 
-const Search = ({originalData, setFreshList}) => {
+const Search = () => {
+    const { originalData, setFreshList } = useContext(AppContext);
     const [searchText, setSearchText] = useState("");
 
     const handleSearch = () => {
