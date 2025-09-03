@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import Card from "./Card";
 import Shimmer from "./Shimmer";
+import AppContext from "../utils/AppContext";
+import { Link } from "react-router-dom";
 
-const Body = ({api, freshList, setFreshList, originalData}) => {
+const Body = () => {
+    const { api, freshList, setFreshList, originalData } = useContext(AppContext);
     let [isTopRated, setIsTopRated] = useState(false);
     let [isFastDelivered, setIsFastDelivered] = useState(false);
     
@@ -35,7 +38,7 @@ const Body = ({api, freshList, setFreshList, originalData}) => {
             </div>
             <div className="card-container">
                 {freshList.map(item => (
-                    <Card key = {item.info.id} res = {item} />
+                    <Link key = {item.info.id} to={"/restaurant/" + item.info.id}> <Card res = {item} /> </Link>
                 ))}
             </div>
             <div className="hero-image-container">

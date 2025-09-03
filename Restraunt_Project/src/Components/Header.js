@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { LOGO, CART, WISHLIST, SWIGGY } from "../utils/Images";
 import { data } from "../utils/data";
 import Search from "./Search";
+import AppContext from "../utils/AppContext";
 
-const Header = ({api, freshList, setFreshList, originalData}) => {
+const Header = () => {
+      const { originalData, freshList, setFreshList } = useContext(AppContext);
     return (
         <div className="header">
             <div className="left-container">
@@ -12,11 +14,7 @@ const Header = ({api, freshList, setFreshList, originalData}) => {
                 </div>
             </div>
             <div className="right-container">
-                <Search 
-                    originalData = {originalData}
-                    freshList = {freshList}
-                    setFreshList = {setFreshList}
-                />
+                <Search />
                 <div className="profile-container">
                 </div>
                 <img src= { WISHLIST } alt="wish-list"></img>
