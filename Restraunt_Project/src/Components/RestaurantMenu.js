@@ -1,6 +1,6 @@
 import { useState, useEffect, use } from "react";
 import Shimmer from "./Shimmer";
-import MenuItems from "./MenuCategories";
+import MenuCategories from "./MenuCategories";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/data";
 
@@ -17,6 +17,7 @@ const RestaurantMenu = () => {
     const data = await fetch(MENU_API + resId);
     const json = await data.json();
     setResData(json);
+    console.log(json);
   };
 
   if (resData === null) return <Shimmer />;
@@ -27,11 +28,12 @@ const RestaurantMenu = () => {
     cuisines,
     areaName,
     avgRating,
-    totalRating,
+    totalRatingsString,
     costForTwoMessage,
-  } = resData?.data?.cards[2]?.card?.card?.info;
+  } = resData?.data?.cards[2]?.card?.card?.info || {};
   const { slaString, deliveryTime } =
     resData?.data?.cards[2]?.card?.card?.info?.sla;
+  console.log(totalRatingsString);
 
   const menuCategories =
     resData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -41,16 +43,17 @@ const RestaurantMenu = () => {
     );
 
   return (
-    <div className="restaurant-menu">
-      <div className="restaurant-info">
-        <h2>{name}</h2>
-        <p>{cuisines.join(", ")}</p>
-        <p>{avgRating}</p>
-        <p>{totalRating}</p>
-        <p>{costForTwoMessage}</p>
-        <p>{areaName}</p>
+    <div className="w-6/12 m-auto font-gilroy">
+      <div className="my-6 border-b-2 border-gray-300 text-center">
+        <p className="font-extrabold text-3xl mb-2 ">{name}</p>
+        <div className="flex flex-wrap font-bold mb-4 gap-2 text-gray-400 justify-center ">
+          <p>{cuisines.join(", ")}</p>
+          <p>- {costForTwoMessage}</p>
+        </div>
       </div>
-      <MenuItems menuCategories={menuCategories} />
+      <div className="">
+        <MenuCategories menuCategories={menuCategories} />
+      </div>
     </div>
   );
 };

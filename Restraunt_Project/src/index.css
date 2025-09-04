@@ -1,0 +1,10 @@
+@import "./utils/fonts.css";
+
+@theme {
+  --font-sans: "gilroy", sans-serif;
+  /* --color-primary: #1e40af; */
+  /* --color-secondary: #f59e0b; */
+  /* --spacing-lg: 2rem; */
+}
+
+@import "tailwindcss";

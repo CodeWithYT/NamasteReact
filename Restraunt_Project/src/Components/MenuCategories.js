@@ -1,25 +1,28 @@
 import MenuCategoryItems from "./MenuCategoryItems";
 
-const MenuItems = ({ menuCategories }) => {
-  console.log("MenuItems", menuCategories);
+const MenuCategories = ({ menuCategories }) => {
   return (
-    <div className="menu-items">
+    <div className="font-gilroy flex flex-col gap-4 mb-10">
       {menuCategories.map((category) => {
         return (
-          <div className="menu-category" key={category.card.card.title}>
-            <div className="category-title">
-              <h2>
+          <div className="" key={category.card.card.title}>
+            <div className="flex justify-between cursor-pointer font-extrabold text-lg my-4">
+              <p>
                 {category.card.card.title +
                   `${" (" + category?.card?.card?.itemCards.length + ")"}`}
-              </h2>
+              </p>
+              <p>🔽</p>
             </div>
-            <MenuCategoryItems
-              categoryItems={category?.card?.card?.itemCards}
-            />
+            <div className="">
+              <MenuCategoryItems
+                categoryItems={category?.card?.card?.itemCards}
+              />
+            </div>
+            <div className=" border-b-[15] border-gray-100"></div>
           </div>
         );
       })}
     </div>
   );
 };
-export default MenuItems;
+export default MenuCategories;
