@@ -51,9 +51,7 @@ const RestaurantMenu = () => {
           <p>- {costForTwoMessage}</p>
         </div>
       </div>
-      <div className="">
-        <MenuCategories menuCategories={menuCategories} />
-      </div>
+      <MenuCategories menuCategories={menuCategories} />
     </div>
   );
 };

@@ -3,23 +3,32 @@ import { CLOUDINARY_URL } from "../utils/Images";
 const MenuCategoryItems = ({ categoryItems }) => {
   console.log("CI", categoryItems);
   return (
-    <div className="">
-      {categoryItems?.map((item) => {
+    <div>
+      {categoryItems?.map((item, index) => {
         const { id, name, description, price, defaultPrice, imageId } =
           item.card.info;
+        const isLastItem = index === categoryItems.length - 1;
         return (
           <div key={id}>
-            <div className="border-b-2 border-gray-200 my-4 py-8 flex justify-between items-center">
-              <div className="flex flex-col gap-1  overflow-ellipsis">
-                <p>{name}</p>
-                <p>{description}</p>
-                <p>₹{(price || defaultPrice) / 100}</p>
+            <div
+              className={`flex justify-between gap-4 my-4 ${
+                !isLastItem ? "pb-4 border-b border-gray-200" : ""
+              }`}
+            >
+              <div className="flex flex-col gap-1 pr-4 ">
+                <p className="font-semibold text-lg">{name}</p>
+                <p className="line-clamp-2 text-sm text-gray-600">
+                  {description}
+                </p>
+                <p className="text-md font-medium">
+                  ₹{(price || defaultPrice) / 100}
+                </p>
               </div>
-              <div className="bg-amber-300 w-64 aspect-square overflow-hidden rounded-2xl">
+              <div className="w-40 h-40 overflow-hidden rounded-2xl flex-shrink-0">
                 <img
                   className="w-full h-full object-cover"
                   src={CLOUDINARY_URL + imageId}
-                  alt="dd"
+                  alt={name}
                 ></img>
               </div>
             </div>
