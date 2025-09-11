@@ -7,7 +7,7 @@ import { MENU_API } from "../utils/data";
 const RestaurantMenu = () => {
   const [resData, setResData] = useState(null);
   const { resId } = useParams();
-  console.log(resId);
+  const [showIndex, setShowIndex] = useState(null);
 
   useEffect(() => {
     fetchMenu();
@@ -17,23 +17,14 @@ const RestaurantMenu = () => {
     const data = await fetch(MENU_API + resId);
     const json = await data.json();
     setResData(json);
-    console.log(json);
   };
 
   if (resData === null) return <Shimmer />;
 
-  const {
-    id,
-    name,
-    cuisines,
-    areaName,
-    avgRating,
-    totalRatingsString,
-    costForTwoMessage,
-  } = resData?.data?.cards[2]?.card?.card?.info || {};
+  const { name, cuisines, costForTwoMessage } =
+    resData?.data?.cards[2]?.card?.card?.info || {};
   const { slaString, deliveryTime } =
     resData?.data?.cards[2]?.card?.card?.info?.sla;
-  console.log(totalRatingsString);
 
   const menuCategories =
     resData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -51,7 +42,14 @@ const RestaurantMenu = () => {
           <p>- {costForTwoMessage}</p>
         </div>
       </div>
-      <MenuCategories menuCategories={menuCategories} />
+      {menuCategories.map((category, index) => (
+        <MenuCategories
+          key={category.card?.card?.title}
+          menuCategories={category}
+          isCategoryItemsVisible={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
+        />
+      ))}
     </div>
   );
 };
