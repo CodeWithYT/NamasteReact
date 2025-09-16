@@ -7,35 +7,29 @@ import AppContext from "../utils/AppContext";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./RestaurantMenu";
 import UserContext from "../utils/UserContext";
+import useRestaurantData from "../utils/useRestaurantData";
 
 const root = createRoot(document.getElementById("root"));
 
 const AppLayout = () => {
-  const [api, setApi] = useState(null);
+  const restaurants = useRestaurantData(data);
   const [originalData, setOriginalData] = useState(null);
   const [freshList, setFreshList] = useState(null);
   const [userName, setUserName] = useState();
+
   useEffect(() => {
-    fetchData();
+    if (restaurants) {
+      setFreshList(restaurants);
+      setOriginalData(restaurants);
+    }
     const loggedInUser = {
       name: "Tarun Yelleti",
     };
     setUserName(loggedInUser.name);
-  }, []);
+  }, [restaurants]);
 
-  const fetchData = async () => {
-    const response = await fetch(data);
-    const jason = await response.json();
-    setApi(jason);
-    const restraunts =
-      jason?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setFreshList(restraunts);
-    setOriginalData(restraunts);
-    console.log(restraunts);
-  };
   return (
-    <AppContext.Provider value={{ api, originalData, freshList, setFreshList }}>
+    <AppContext.Provider value={{ originalData, freshList, setFreshList }}>
       <UserContext.Provider value={{ user: { name: userName }, setUserName }}>
         <div id="app">
           <Header />

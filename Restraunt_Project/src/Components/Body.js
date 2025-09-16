@@ -4,12 +4,14 @@ import Shimmer from "./Shimmer";
 import AppContext from "../utils/AppContext";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const { api, freshList, setFreshList, originalData } = useContext(AppContext);
   const [isTopRated, setIsTopRated] = useState(false);
   const [isFastDelivered, setIsFastDelivered] = useState(false);
   const { user, setUserName } = useContext(UserContext);
+  const onlineStatus = useOnlineStatus();
 
   const filters = (isTopRated, isFastDelivered) => {
     let filteredList = [...originalData];
@@ -25,9 +27,9 @@ const Body = () => {
       : filteredList;
     setFreshList(filteredList);
   };
-
+  if (!onlineStatus) return <h1>you are offline!</h1>;
   return freshList === null ? (
-    (console.log("shimmer called"), (<Shimmer />))
+    <Shimmer />
   ) : (
     <div className="body">
       {/* <div className="hero-image-container"></div> */}

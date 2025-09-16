@@ -4,10 +4,12 @@ import { data } from "../utils/data";
 import Search from "./Search";
 import AppContext from "../utils/AppContext";
 import UserContext from "../utils/UserContext";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const { originalData, freshList, setFreshList } = useContext(AppContext);
   const { user } = useContext(UserContext);
+  const onlineStatus = useOnlineStatus();
   return (
     <div className="header">
       <div className="left-container">
@@ -16,6 +18,9 @@ const Header = () => {
         </div>
       </div>
       <div className="right-container">
+        <div>
+          <span>{onlineStatus ? "🟢 online" : "🔴 offline"}</span>
+        </div>
         <Search />
         <div className="profile-container"></div>
         <div>{user.name}</div>
