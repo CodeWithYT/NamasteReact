@@ -1,25 +1,33 @@
+import { useState } from "react";
 import MenuCategoryItems from "./MenuCategoryItems";
 
-const MenuItems = ({ menuCategories }) => {
-  console.log("MenuItems", menuCategories);
+const MenuCategories = ({
+  menuCategories,
+  isCategoryItemsVisible,
+  setShowIndex,
+}) => {
+  const showCategoryItems = () => {
+    setShowIndex();
+  };
   return (
-    <div className="menu-items">
-      {menuCategories.map((category) => {
-        return (
-          <div className="menu-category" key={category.card.card.title}>
-            <div className="category-title">
-              <h2>
-                {category.card.card.title +
-                  `${" (" + category?.card?.card?.itemCards.length + ")"}`}
-              </h2>
-            </div>
-            <MenuCategoryItems
-              categoryItems={category?.card?.card?.itemCards}
-            />
-          </div>
-        );
-      })}
+    <div className="font-gilroy flex flex-col gap-4 mb-10">
+      <div
+        className="flex justify-between cursor-pointer font-extrabold text-lg my-4"
+        onClick={() => showCategoryItems()}
+      >
+        <p>
+          {menuCategories.card.card.title +
+            `${" (" + menuCategories?.card?.card?.itemCards.length + ")"}`}
+        </p>
+        <p>🔽</p>
+      </div>
+      {isCategoryItemsVisible && (
+        <MenuCategoryItems
+          categoryItems={menuCategories?.card?.card?.itemCards}
+        />
+      )}
+      <div className=" border-b-[15] border-gray-100"></div>
     </div>
   );
 };
-export default MenuItems;
+export default MenuCategories;
