@@ -13,23 +13,23 @@ const root = createRoot(document.getElementById("root"));
 
 const AppLayout = () => {
   const restaurants = useRestaurantData(data);
-  const [originalData, setOriginalData] = useState(null);
-  const [freshList, setFreshList] = useState(null);
   const [userName, setUserName] = useState();
 
   useEffect(() => {
-    if (restaurants) {
-      setFreshList(restaurants);
-      setOriginalData(restaurants);
-    }
     const loggedInUser = {
       name: "Tarun Yelleti",
     };
     setUserName(loggedInUser.name);
-  }, [restaurants]);
+  }, []);
 
   return (
-    <AppContext.Provider value={{ originalData, freshList, setFreshList }}>
+    <AppContext.Provider
+      value={{
+        originalData: restaurants,
+        freshList: restaurants,
+        setFreshList: () => {},
+      }}
+    >
       <UserContext.Provider value={{ user: { name: userName }, setUserName }}>
         <div id="app">
           <Header />
