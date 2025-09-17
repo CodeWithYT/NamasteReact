@@ -1,4 +1,4 @@
-import { useState, useContext, use } from "react";
+import { useState, useContext } from "react";
 import Card from "./Card";
 import Shimmer from "./Shimmer";
 import AppContext from "../utils/AppContext";
