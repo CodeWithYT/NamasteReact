@@ -29,11 +29,13 @@ const Header = () => {
         <Search />
         <div className="profile-container"></div>
         <div>{user.name}</div>
-        <img
-          src={WISHLIST}
-          alt="wish-list"
-          className="hover:cursor-pointer"
-        ></img>
+        <Link to={"/wishlist"}>
+          <img
+            src={WISHLIST}
+            alt="wish-list"
+            className="hover:cursor-pointer"
+          ></img>
+        </Link>
         <div className="py-2 pr-3 flex items-center relative hover:cursor-pointer">
           <Link to="/cart">
             <img src={CART} alt="cart"></img>

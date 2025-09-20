@@ -67,6 +67,10 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/wishlist",
+        element: <WishList />,
+      },
     ],
     errorElement: <h1>404 Not Found</h1>,
   },
