@@ -8,12 +8,16 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./RestaurantMenu";
 import UserContext from "../utils/UserContext";
 import useRestaurantData from "../utils/useRestaurantData";
+import { Provider } from "react-redux";
+import appStore from "../utils/appstore";
+import Cart from "./Cart";
 
 const root = createRoot(document.getElementById("root"));
 
 const AppLayout = () => {
   const restaurants = useRestaurantData(data);
   const [userName, setUserName] = useState();
+  console.log(restaurants);
 
   useEffect(() => {
     const loggedInUser = {
@@ -23,20 +27,22 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <AppContext.Provider
-      value={{
-        originalData: restaurants,
-        freshList: restaurants,
-        setFreshList: () => {},
-      }}
-    >
-      <UserContext.Provider value={{ user: { name: userName }, setUserName }}>
-        <div id="app">
-          <Header />
-          <Outlet />
-        </div>
-      </UserContext.Provider>
-    </AppContext.Provider>
+    <Provider store={appStore}>
+      <AppContext.Provider
+        value={{
+          originalData: restaurants,
+          freshList: restaurants,
+          setFreshList: () => {},
+        }}
+      >
+        <UserContext.Provider value={{ user: { name: userName }, setUserName }}>
+          <div id="app">
+            <Header />
+            <Outlet />
+          </div>
+        </UserContext.Provider>
+      </AppContext.Provider>
+    </Provider>
   );
 };
 
@@ -56,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <h1>404 Not Found</h1>,
