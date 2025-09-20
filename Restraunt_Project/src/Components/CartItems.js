@@ -1,20 +1,20 @@
 import { useDispatch } from "react-redux";
 import { CLOUDINARY_URL } from "../utils/Images";
-import { addItem } from "../utils/cartSlice";
+import { removeItem } from "../utils/cartSlice";
 
-const MenuCategoryItems = ({ categoryItems }) => {
+const CartItems = ({ addItems }) => {
+  console.log(addItems);
   const dispatch = useDispatch();
-  const cartHandler = (item) => {
-    dispatch(addItem(item));
-  };
+  let total = 0;
   return (
     <div>
-      {categoryItems?.map((item, index) => {
+      {addItems?.map((item, index) => {
         const { id, name, description, price, defaultPrice, imageId } =
           item.card.info;
-        const isLastItem = index === categoryItems.length - 1;
+        const isLastItem = index === addItems.length - 1;
+        total += price;
         return (
-          <div key={id}>
+          <div key={index}>
             <div
               className={`flex justify-between gap-4 my-4 ${
                 !isLastItem ? "pb-4 border-b border-gray-200" : ""
@@ -29,24 +29,37 @@ const MenuCategoryItems = ({ categoryItems }) => {
                   ₹{(price || defaultPrice) / 100}
                 </p>
               </div>
-              <div className="w-40 h-40 overflow-hidden rounded-2xl flex-shrink-0 relative">
+              <div className="w-40 h-40 overflow-hidden rounded-2xl flex-shrink-0">
                 <img
                   className="w-full h-full object-cover"
                   src={CLOUDINARY_URL + imageId}
                   alt={name}
                 ></img>
+              </div>
+              <div>
                 <button
-                  className="px-2 m-2 bg-black text-white outline-none rounded-lg h-8 w-auto hover:cursor-pointer absolute bottom-0 left-1/2 transform -translate-x-1/2"
-                  onClick={() => cartHandler(item)}
+                  className="hover: cursor-pointer"
+                  onClick={() => dispatch(removeItem(id))}
                 >
-                  Add+
+                  ❌
                 </button>
               </div>
             </div>
           </div>
         );
       })}
+      <div className="border-t-16 border-gray-200">
+        <div className="px-4">
+          <p>Billing Details</p>
+          <div className="flex justify-between">
+            <p>Item Total</p>
+            <p className="font-bold">
+              {addItems.length ? total / 100 + "/-" : ""}{" "}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-export default MenuCategoryItems;
+export default CartItems;
