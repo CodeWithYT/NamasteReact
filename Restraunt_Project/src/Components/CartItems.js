@@ -12,7 +12,7 @@ const CartItems = ({ addItems }) => {
         const { id, name, description, price, defaultPrice, imageId } =
           item.card.info;
         const isLastItem = index === addItems.length - 1;
-        total += price;
+        total += price || defaultPrice;
         return (
           <div key={index}>
             <div
